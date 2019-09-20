@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DataPersistenceSprintChallenge</string>
+    <string name="enter_movie_here">Enter Movie Here</string>
+    <string name="view_favorites">View Favorites</string>
 </resources>
