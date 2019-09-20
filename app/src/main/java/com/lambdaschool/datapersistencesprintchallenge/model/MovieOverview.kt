@@ -1,9 +1,16 @@
 package com.lambdaschool.sprint4challenge_mymovies.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
 class MovieSearchResult(val results: List<MovieOverview>)
 
+
+@Entity(tableName = "movies")
 class MovieOverview(
-        val id: Int,
+        @PrimaryKey @ColumnInfo(name = "movie_id")
+        val movieId: Int,
         val original_language: String,
         val original_title: String,
         val overview: String,
