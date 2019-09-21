@@ -10,6 +10,7 @@ import com.lambdaschool.datapersistencesprintchallenge.apiaccess.MovieApi
 import com.lambdaschool.datapersistencesprintchallenge.model.FavMovie
 import com.lambdaschool.datapersistencesprintchallenge.viewmodel.MovieViewModel
 import com.lambdaschool.sprint4challenge_mymovies.model.MovieOverview
+import kotlinx.android.synthetic.main.activity_favorites.*
 import kotlinx.android.synthetic.main.activity_main.*
 //Deals with favoriting movies
 class FavoritesActivity : AppCompatActivity() {
@@ -30,58 +31,72 @@ class FavoritesActivity : AppCompatActivity() {
     }
 
     private fun buildItemView(movie: FavMovie /*forgot this needs to be favmovie*/): TextView {
-        var view = TextView(this)
-        view.text = movie.movieTitle
-        view.textSize = 34f
+        var myView = TextView(this)
+        myView.text = movie.movieTitle
+        myView.textSize = 34f
         val watched = resources.getColor(R.color.colorAccent)//why is this depreciated investigate for build week
         val notWatched = resources.getColor(R.color.colorPrimary)
-        if (movie.movieWatched == true){
-            view.setBackgroundColor(watched)
+        if (movie.movieWatched){
+            myView.setBackgroundColor(watched)
         }else{
-            view.setBackgroundColor(notWatched)
+            myView.setBackgroundColor(notWatched)
         }
 
         //New view needs an onclick listener
-        view.setOnClickListener {
+        myView.setOnClickListener {
             //Logic for view
-            if (movie.movieWatched == false){
+            if (!movie.movieWatched){
                 movie.movieWatched = true //the watched toggle spoked about in the readme toggled to true
                 movieViewModel.updateMovie(movie)//updates movie in movieViewModel
-                view.setBackgroundColor(watched)//changes background color
+                myView.setBackgroundColor(watched)//changes background color
             }else{
                 movie.movieWatched = false //the opposite of above
                 movieViewModel.updateMovie(movie)//updates movie in movieViewModel
-                view.setBackgroundColor(notWatched)//changes background color
+                myView.setBackgroundColor(notWatched)//changes background color
 
 
             }
         }
 
-        view.setOnDragListener {
+        myView.setOnLongClickListener {
 
             val alertBuilder = AlertDialog.Builder(this)
             alertBuilder.setMessage("Do you really want to remove the movie from your favorites?")
             //how do they respond?
 
+           /* alertBuilder.setIcon(R.drawable.ic_sentiment_satisfied_black_24dp) not working */
+            alertBuilder.setPositiveButton("YES"){ dialog, which ->
+                movieViewModel.deleteMovie(movie)
+                favsList = movieViewModel.getListOfMovies()
+                addViews(favsList)
+            }
+
+           alertBuilder.setNegativeButton("NO"){dialog, which ->
+
+
+            }
+
+            val dialog: AlertDialog = alertBuilder.create()
+            dialog.show()
+
             true
+
+            /*This is not working Google doc for setOnDragListener Returns true if the drag event was handled successfully, or false if the drag event was not handled.
+            Note that false will trigger the View to call its onDragEvent() handler.*/
         }
 
-        return view
+        return myView
+
+
     }
 
     //This will add the views created above to the Linear Layout
-    fun addViews(movie: List<FavMovie/*forgot this needs to be favmovie*/>) {
-        //If it wasn't for Brandon telling me about this the other day I wouldn't have thought of removing all the views
-        // I have no idea why I can't remember things, forEach doesn't work with live data? I am lost
-        linear_layout_list.removeAllViews()
+    fun addViews(movie: List<FavMovie>) {
+        linear_layout_list_fav.removeAllViews()
         movie.forEach { movie ->
-            linear_layout_list.addView(buildItemView(movie))
-
+            linear_layout_list_fav.addView(buildItemView(movie))
             //this should work
-
-
         }
-
         //I am getting tired
     }
 

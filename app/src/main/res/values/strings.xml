@@ -2,4 +2,6 @@
     <string name="app_name">DataPersistenceSprintChallenge</string>
     <string name="enter_movie_here">Enter Movie Here</string>
     <string name="view_favorites">View Favorites</string>
+    <string name="long_click_to_remove_tap_if_you_have_watched_tap_again_to_revert_back">LONG CLICK TO REMOVE, TAP IF YOU HAVE WATCHED, TAP AGAIN TO REVERT BACK</string>
+    <string name="search">SEARCH</string>
 </resources>

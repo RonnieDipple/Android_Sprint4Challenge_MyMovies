@@ -18,14 +18,16 @@
 
         />
 
-    <ImageView
+    <Button
 
+        android:text="@string/search"
         android:id="@+id/imageView"
+        android:paddingTop="15dp"
+        android:paddingStart="15sp"
         android:paddingEnd="15sp"
         android:layout_marginTop="6sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_search_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/editText_search"

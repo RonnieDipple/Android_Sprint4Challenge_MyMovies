@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.LiveData
@@ -88,13 +89,18 @@ class MainActivity : AppCompatActivity(), Callback<MovieSearchResult> {
         view.text = movie.original_title
         view.textSize = 34f//Tried 50f, it was way to big
         //This onclicklistener passes data to favorite movie, can do some funky things here like change view color or other things, worth experimenting
+        //need to implement some logic here maybe is favorite, maybe I don't need isFav
         view.setOnClickListener {
-            //need to implement some logic here maybe is favorite, maybe I don't need isFav
             val favMovie = FavMovie(movie.original_title, movie.original_language, false)
-            val backgroundColor = R.color.colorAccent
-            view.resources.getColor(backgroundColor)//Changes background color
-            movieViewModel.insertMovie(favMovie)
+            /*val backgroundColor = (R.color.colorAccent) //Not working and I am to tired to figure out why
+            view.resources.getColor(backgroundColor)//Changes background color*/
+            val toast = Toast.makeText(this, "Movie added to favorites", Toast.LENGTH_SHORT)
+            toast.setGravity(Gravity.CENTER and Gravity.RIGHT,0,0)
+            toast.show()
 
+
+
+            movieViewModel.insertMovie(favMovie)
         }
 
         return view
@@ -118,6 +124,7 @@ class MainActivity : AppCompatActivity(), Callback<MovieSearchResult> {
 
 
     fun retrieveMovie(query: String) {
+
         movieApi.getMovies(query, key).enqueue(this)
     }
 
