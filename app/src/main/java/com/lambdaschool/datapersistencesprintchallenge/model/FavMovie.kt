@@ -8,8 +8,7 @@ class FavMovie(
 
     val movieTitle: String,
     val movieDate: String,
-    var moveWatched: Boolean,
-    var moveisFav: Boolean,
+    var movieWatched: Boolean,
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0
 

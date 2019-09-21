@@ -10,7 +10,7 @@ import com.lambdaschool.sprint4challenge_mymovies.model.MovieOverview
 interface MovieDao{
 
    @Query("SELECT * FROM movie_table") //this was called movies until I realized I made a huge mistake now it is a table, well it was meant to be a table at the start
-    fun getAllMovies(): LiveData<List<FavMovie>>
+    fun getAllMovies(): List<FavMovie>
 /*
     @Query("SELECT * FROM movies WHERE movie_id = :movieId")
     fun getMovieId(movieId: Int):MovieOverview?

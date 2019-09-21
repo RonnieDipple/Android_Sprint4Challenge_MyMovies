@@ -11,7 +11,7 @@ class MovieViewModel(application: Application): AndroidViewModel(application){
 //The view model this will hurt but not as much as the repo
     private var movieRepo: MovieRepository = MovieRepository(application) //this was a headache
 
-    private var movieLiveDatList: LiveData<List<FavMovie>> = movieRepo.getAllMovies() //Omg I fill in the whole repo and this goes red yay// Solved
+    /*private var movieLiveDatList: LiveData<List<FavMovie>> = movieRepo.getAllMovies()*/ //Omg I fill in the whole repo and this goes red yay// Solved
 
     fun  insertMovie(movie: FavMovie){
         //calls the repo insert function
@@ -29,8 +29,9 @@ class MovieViewModel(application: Application): AndroidViewModel(application){
     }
 
     //gets live list of all movies
-    fun getListOfMovies(): LiveData<List<FavMovie>>{
-        var list: LiveData<List<FavMovie>> = movieRepo.getAllMovies()
+    //Strangely this isn't getting called
+    fun getListOfMovies(): List<FavMovie>{
+        var list: List<FavMovie> = movieRepo.getAllMovies()
         return list
     }
 

@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.lambdaschool.datapersistencesprintchallenge.Dao.MovieDao
 
-@Database(entities = [FavMovie::class], exportSchema = false, version = 1)
+@Database(entities = [FavMovie::class], exportSchema = true, version = 1)
 abstract class MovieDataBase : RoomDatabase() {
 
 

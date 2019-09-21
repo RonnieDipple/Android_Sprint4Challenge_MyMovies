@@ -2,7 +2,6 @@ package com.lambdaschool.datapersistencesprintchallenge.repository
 
 import android.content.Context
 import android.os.AsyncTask
-import androidx.lifecycle.LiveData
 import com.lambdaschool.datapersistencesprintchallenge.Dao.MovieDao
 import com.lambdaschool.datapersistencesprintchallenge.model.FavMovie
 import com.lambdaschool.datapersistencesprintchallenge.model.MovieDataBase
@@ -11,7 +10,7 @@ import com.lambdaschool.datapersistencesprintchallenge.model.MovieDataBase
 //I have no idea what to do here my mind is going blank
 class MovieRepository(context: Context) {
 
-    lateinit var movieList: List<FavMovie>//List of fav movie
+    //List of fav movie
      var movieDao: MovieDao
 
     init {
@@ -23,7 +22,7 @@ class MovieRepository(context: Context) {
 
 
     //gets all the fav movies
-    fun getAllMovies():LiveData<List<FavMovie>>{
+    fun getAllMovies():List<FavMovie>{
         return MovieASyncTask(movieDao).execute().get()
 
     }
@@ -45,55 +44,50 @@ class MovieRepository(context: Context) {
         DeleteMovieASyncTask(movieDao).execute(movie)
     }
 
-    companion object{
+    companion object {
         //uses asynctask for the insert fun above
-        private class InsertAsyncTask(movieDao: MovieDao): AsyncTask<FavMovie, Unit, Unit>(){
-             val movieDao = movieDao
+        private class InsertAsyncTask(movieDao: MovieDao) : AsyncTask<FavMovie, Unit, Unit>() {
+            val MovieDao = movieDao
 
             override fun doInBackground(vararg params: FavMovie?) {
-                movieDao.Insert(params[0]!!)
+                MovieDao.Insert(params[0]!!)
 
             }
         }
-    }
 
 
-    //I hate this jumping backwards and forwards
+        //I hate this jumping backwards and forwards
 
-    //uses asynctask for the update fun above
-    private class UpdateMovieAsyncTask(movieDao: MovieDao): AsyncTask<FavMovie, Unit, Unit>(){
-        val MovieDao = movieDao //hate how you have to essential reverse this it triggers me
-        override fun doInBackground(vararg params: FavMovie?) {
-            MovieDao.update(params[0]!!)
+        //uses asynctask for the update fun above
+        private class UpdateMovieAsyncTask(movieDao: MovieDao) : AsyncTask<FavMovie, Unit, Unit>() {
+            val MovieDao = movieDao //hate how you have to essential reverse this it triggers me
+            override fun doInBackground(vararg params: FavMovie?) {
+                MovieDao.update(params[0]!!)
 
-        }
-    }
-
-    //uses asynctask for the delete fun above
-    private class DeleteMovieASyncTask(movieDao: MovieDao): AsyncTask<FavMovie, Unit, Unit>(){
-        val MovieDao = movieDao //triggered
-        override fun doInBackground(vararg params: FavMovie?) {
-            MovieDao.delete(params[0]!!)
-        }
-    }
-
-
-    // The task that caused me pain
-    private class MovieASyncTask(movieDao: MovieDao): AsyncTask<FavMovie, Unit, LiveData<List<FavMovie>>>(){
-        val MovieDao = movieDao
-
-
-        override fun doInBackground(vararg params: FavMovie?): LiveData<List<FavMovie>> {
-            val list = MovieDao.getAllMovies()
-            return list
-
+            }
         }
 
-        override fun onPostExecute(result: LiveData<List<FavMovie>>?) {
-            super.onPostExecute(result)
-            val list = result
+        //uses asynctask for the delete fun above
+        private class DeleteMovieASyncTask(movieDao: MovieDao) : AsyncTask<FavMovie, Unit, Unit>() {
+            val MovieDao = movieDao //triggered
+            override fun doInBackground(vararg params: FavMovie?) {
+                MovieDao.delete(params[0]!!)
+            }
         }
 
 
+        // The task that caused me pain
+        private class MovieASyncTask(movieDao: MovieDao) :
+            AsyncTask<FavMovie, Unit, List<FavMovie>>() {
+            val MovieDao = movieDao
+
+
+            override fun doInBackground(vararg params: FavMovie?): List<FavMovie> {
+                val list = MovieDao.getAllMovies()
+                return list
+
+            }
+
+        }
     }
 }

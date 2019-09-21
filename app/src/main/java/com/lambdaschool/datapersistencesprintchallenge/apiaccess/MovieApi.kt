@@ -11,10 +11,10 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface MovieApi {
-    @GET("search${MovieConstants.FIXED_QUERY_PARAMS}")
+    @GET("search/movie${MovieConstants.FIXED_QUERY_PARAMS}")// I forgot to add movie to the end point Kill me
     fun getMovies(
-        @Query("query") movieName: String,
-        @Query("api_key") key: String = MovieConstants.API_KEY_PARAM
+        @Query("query") query: String,
+        @Query("api_key") key: String
     ): Call<MovieSearchResult>
 
 
