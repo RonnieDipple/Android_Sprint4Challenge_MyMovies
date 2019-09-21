@@ -1,10 +1,12 @@
 package com.lambdaschool.datapersistencesprintchallenge.Dao
 
+
+//NOT NEEDED DEPRECIATED LIKE AND3
 import androidx.room.*
 
 //Using this from previous assignment to make my life easier
 
-@Dao //Must be added so Room knows this is a Dao
+/*@Dao //Must be added so Room knows this is a Dao
 interface BaseDao<in T> { //Must contain an interface because that is essential what a dao is
 
     //Insert, Delete and Update here will be inherited by daos
@@ -19,3 +21,6 @@ interface BaseDao<in T> { //Must contain an interface because that is essential 
 //If I don't comment like this I will look at my code and forget how it works
 
 }
+
+
+ */

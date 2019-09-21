@@ -6,6 +6,9 @@ import android.util.Log
 import android.widget.Toast
 import com.lambdaschool.datapersistencesprintchallenge.R
 import com.lambdaschool.datapersistencesprintchallenge.apiaccess.MovieApi
+import com.lambdaschool.datapersistencesprintchallenge.model.FavMovie
+import com.lambdaschool.datapersistencesprintchallenge.model.MovieDataBase
+import com.lambdaschool.datapersistencesprintchallenge.viewmodel.MovieViewModel
 import com.lambdaschool.sprint4challenge_mymovies.apiaccess.MovieConstants
 import com.lambdaschool.sprint4challenge_mymovies.model.MovieSearchResult
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,6 +19,10 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), Callback<MovieSearchResult> {
     lateinit var movieApi: MovieApi
+    lateinit var favMovie: FavMovie
+    lateinit var movieSearchResult: MovieSearchResult
+    lateinit var movieViewModel: MovieViewModel
+    lateinit var movieDataBase: MovieDataBase //Lateinit varing all these, can't get anything to display right now
 
     companion object{
         val key = MovieConstants.API_KEY_PARAM
@@ -42,6 +49,8 @@ class MainActivity : AppCompatActivity(), Callback<MovieSearchResult> {
 
         //Instantiates retrofit builder
         movieApi = MovieApi.MovieFactory.create()
+
+        movi
 
         //Initiates the query
         button.setOnClickListener {

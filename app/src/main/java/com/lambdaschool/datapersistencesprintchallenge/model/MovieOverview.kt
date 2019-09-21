@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey
 class MovieSearchResult(val results: List<MovieOverview>)
 
 
-@Entity(tableName = "movies")
 class MovieOverview(
 
         val original_language: String,
