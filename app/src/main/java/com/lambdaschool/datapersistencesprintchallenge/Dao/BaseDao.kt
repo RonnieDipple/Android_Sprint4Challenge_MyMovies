@@ -2,6 +2,7 @@ package com.lambdaschool.datapersistencesprintchallenge.Dao
 
 
 //NOT NEEDED DEPRECIATED LIKE AND3
+//was going to use this to demonstrate inheritance but it was inefficient on an app of this scale
 import androidx.room.*
 
 //Using this from previous assignment to make my life easier

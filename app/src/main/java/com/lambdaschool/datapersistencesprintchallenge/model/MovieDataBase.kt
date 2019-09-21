@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.lambdaschool.datapersistencesprintchallenge.Dao.MovieDao
 
+//Hands stuff over to wonderful room to deal with kind of
 @Database(entities = [FavMovie::class], exportSchema = true, version = 1)
 abstract class MovieDataBase : RoomDatabase() {
 
@@ -18,7 +19,10 @@ abstract class MovieDataBase : RoomDatabase() {
 
         fun getDataBaseInstance(context: Context): MovieDataBase? {
 
+
             if (movieDataBaseInstance == null) {
+
+                //synchronized Executes the given function [block] while holding the monitor of the given object [lock].
                 synchronized(MovieDataBase::class) {
                     movieDataBaseInstance = Room.databaseBuilder(
                         context.applicationContext,
@@ -33,9 +37,7 @@ abstract class MovieDataBase : RoomDatabase() {
 
 
         }
-        fun destroyMovieDataBaseInstance(){
-            movieDataBaseInstance = null
-        }
+
 
     }
 

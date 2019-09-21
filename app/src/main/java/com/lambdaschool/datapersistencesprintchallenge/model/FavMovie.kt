@@ -3,6 +3,8 @@ package com.lambdaschool.datapersistencesprintchallenge.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+
+//Table for fav Sqllite
 @Entity(tableName = "movie_table")
 class FavMovie(
 

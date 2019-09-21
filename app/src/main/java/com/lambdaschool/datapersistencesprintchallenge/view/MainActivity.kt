@@ -91,6 +91,8 @@ class MainActivity : AppCompatActivity(), Callback<MovieSearchResult> {
         view.setOnClickListener {
             //need to implement some logic here maybe is favorite, maybe I don't need isFav
             val favMovie = FavMovie(movie.original_title, movie.original_language, false)
+            val backgroundColor = R.color.colorAccent
+            view.resources.getColor(backgroundColor)//Changes background color
             movieViewModel.insertMovie(favMovie)
 
         }

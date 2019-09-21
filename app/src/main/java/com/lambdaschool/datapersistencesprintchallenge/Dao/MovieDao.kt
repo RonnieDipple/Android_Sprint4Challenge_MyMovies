@@ -5,7 +5,7 @@ import androidx.room.*
 import com.lambdaschool.datapersistencesprintchallenge.model.FavMovie
 import com.lambdaschool.sprint4challenge_mymovies.model.MovieOverview
 
-
+//Dao is basically an interface for sqllite
 @Dao
 interface MovieDao{
 
